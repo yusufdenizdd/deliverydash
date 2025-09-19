@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,12 +6,52 @@ public class Driver : MonoBehaviour
 {
     [SerializeField] float steerSpeed = 200f;
     [SerializeField] float moveSpeed = 12f;
+
+    [SerializeField] float normalSpeed = 12f;
+    [SerializeField] float boostSpeed = 24f;
+    [SerializeField] float boastDuration = 5f;
+    [SerializeField] float slowSpeed = 6f;
+
+    [SerializeField] float slowDuration = 5f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     /*  void Start()
      {
      }
   */
+
     // Update is called once per frame
+    public void BoostCar()
+    {
+        StartCoroutine(BoosterCoroutine());
+    }
+
+    IEnumerator BoosterCoroutine()
+    {
+
+        Debug.Log($"hız {boastDuration}sn artacak");
+
+        moveSpeed = boostSpeed;
+        yield return new WaitForSeconds(boastDuration);
+        Debug.Log("hızlandırma bitti");
+        moveSpeed = normalSpeed;
+
+
+    }
+
+    public void SlowCar()
+    {
+        StartCoroutine(SlowerCoroutine());
+    }
+
+    IEnumerator SlowerCoroutine()
+    {
+        Debug.Log($"hız {slowDuration}sn azalacak");
+
+        moveSpeed = slowSpeed;
+        yield return new WaitForSeconds(slowDuration);
+        Debug.Log("yavaşlama bitti");
+        moveSpeed = normalSpeed;
+    }
     void Update()
     {
 
@@ -58,7 +99,7 @@ public class Driver : MonoBehaviour
 
 
 
-        
+
 
     }
 }

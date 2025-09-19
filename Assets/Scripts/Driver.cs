@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class Driver : MonoBehaviour
 {
@@ -8,16 +9,21 @@ public class Driver : MonoBehaviour
     [SerializeField] float moveSpeed = 12f;
 
     [SerializeField] float normalSpeed = 12f;
-    [SerializeField] float boostSpeed = 24f;
+    [SerializeField] float boostSpeed = 18f;
     [SerializeField] float boastDuration = 5f;
-    [SerializeField] float slowSpeed = 6f;
+    [SerializeField] float slowSpeed = 8f;
 
     [SerializeField] float slowDuration = 5f;
+
+    [SerializeField] TMP_Text boostText;
+    [SerializeField] TMP_Text slowText;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    /*  void Start()
-     {
-     }
-  */
+    void Start()
+    {
+        boostText.gameObject.SetActive(false);
+        slowText.gameObject.SetActive(false);
+    }
+
 
     // Update is called once per frame
     public void BoostCar()
@@ -31,9 +37,12 @@ public class Driver : MonoBehaviour
         Debug.Log($"hız {boastDuration}sn artacak");
 
         moveSpeed = boostSpeed;
+        slowText.gameObject.SetActive(false);
+        boostText.gameObject.SetActive(true);
         yield return new WaitForSeconds(boastDuration);
         Debug.Log("hızlandırma bitti");
         moveSpeed = normalSpeed;
+        boostText.gameObject.SetActive(false);
 
 
     }
@@ -48,9 +57,12 @@ public class Driver : MonoBehaviour
         Debug.Log($"hız {slowDuration}sn azalacak");
 
         moveSpeed = slowSpeed;
+        boostText.gameObject.SetActive(false);
+        slowText.gameObject.SetActive(true);
         yield return new WaitForSeconds(slowDuration);
         Debug.Log("yavaşlama bitti");
         moveSpeed = normalSpeed;
+        slowText.gameObject.SetActive(false);
     }
     void Update()
     {

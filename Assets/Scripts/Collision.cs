@@ -14,6 +14,7 @@ public class Collision : MonoBehaviour
 
         Debug.Log(collision.gameObject);
         Debug.Log(collision.collider);
+        
     }
 
     // OnTriggerEnter2D'den dönen collision parametresi direkt Collider2D bileşenidir.

@@ -99,11 +99,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7806192595211206602}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 806d2bf43ce834c2fbaf8aac083b7d42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Trigger
+  driverScript: {fileID: 0}
+  destroySecond: 0.5
 --- !u!61 &1991105540287212484
 BoxCollider2D:
   m_ObjectHideFlags: 0

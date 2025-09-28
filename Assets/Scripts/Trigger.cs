@@ -8,21 +8,21 @@ public class Trigger : MonoBehaviour
 
 
     [SerializeField] float destroySecond = 0.5f;
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D other)
     {
 
 
-        if (collision.CompareTag("Package") && !hasPackage)
+        if (other.CompareTag("Package") && !hasPackage)
         {
 
             Debug.Log("paket alındı");
             GetComponent<ParticleSystem>().Play();
             hasPackage = true;
-            Destroy(collision.gameObject, destroySecond);
+            Destroy(other.gameObject, destroySecond);
 
         }
 
-        if (collision.CompareTag("Customer") && hasPackage)
+        if (other.CompareTag("Customer") && hasPackage)
         {
 
             Debug.Log("paket teslim edildi");
@@ -31,11 +31,11 @@ public class Trigger : MonoBehaviour
 
         }
 
-        if (collision.CompareTag("Booster"))
+        if (other.CompareTag("Booster"))
         {
             driverScript.BoostCar();
             Debug.Log("booster");
-            Destroy(collision.gameObject);
+            Destroy(other.gameObject);
 
         }
     }

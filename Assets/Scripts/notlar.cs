@@ -63,7 +63,7 @@ Yavaşlama fonksiyonunun en altındaki moveSpeed = normalSpeed; çalıştı ve h
 
 Sonuç: Sen 2. saniyede Booster almış olmana ve 7. saniyeye kadar hızlı gitmen gerekmesine rağmen, 5. saniyede süresi dolan eski yavaşlama Coroutine'i hızını elinden aldı!
 */
-
+// bu iki coroutine'in ikisi de aynı şeyin üzerinde etki ettiği için bunu yapıyoruz yoksa umrumuzda olmaz
 /* 
 mesela şöyle çözülür:
 1. Değişken Tanımlama Alanı (Sınıfın Üst Kısmı)

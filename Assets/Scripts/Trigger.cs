@@ -59,7 +59,7 @@ public class Trigger : MonoBehaviour
 //         if (other.CompareTag("Driver")) // Sürücünün etiketinin "Driver" olduğunu varsaydık
 //         {
 //             // 2. Sürücünün script'ine eriş
-//             Driver driver = other.GetComponent<Driver>(); (bu arada zaten bu scripti koyduğumuz şey için direkt GetComponent yazmamız yeterli, other. yapmya gerek yok)
+//             Driver driver = other.GetComponent<Driver>(); 
 
 //             // 3. Sürücünün zaten paketi yoksa...
 //             if (driver != null && !driver.PaketiVarMi())

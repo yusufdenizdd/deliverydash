@@ -10,9 +10,8 @@ public class Driver : MonoBehaviour
 
     [SerializeField] float normalSpeed = 12f;
     [SerializeField] float boostSpeed = 18f;
-    [SerializeField] float boastDuration = 5f;
     [SerializeField] float slowSpeed = 8f;
-
+    [SerializeField] float boastDuration = 5f;
     [SerializeField] float slowDuration = 5f;
 
     [SerializeField] TMP_Text boostText;
@@ -108,10 +107,6 @@ public class Driver : MonoBehaviour
 
         transform.Rotate(0, 0, steerAmount);
         transform.Translate(0, moveAmount, 0);
-
-
-
-
 
     }
 }

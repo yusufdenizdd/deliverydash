@@ -39,13 +39,38 @@ public void BoostCar()
 }
 */
 
+/*
+💥 Çakışma Senaryosu: Yavaşlarken Boost Almak
+Ayrı değişkenler kullandığımızı varsayalım:
+
+0. Saniyede: Duvara çarptın (SlowCar()).
+
+moveSpeed = 8 oldu.
+
+slowCoroutine başladı. (5. saniyede bitip hızı tekrar 12 yapacak).
+
+2. Saniyede: Yavaş yavaş ilerlerken önüne bir Booster çıktı ve aldın (BoostCar()).
+
+moveSpeed = 18 oldu.
+
+boostCoroutine başladı. (7. saniyede bitip hızı tekrar 12 yapacak).
+
+5. Saniyeye Gelindiğinde (FACİA ANI):
+
+saniyede başlayan slowCoroutine'in 5 saniyelik süresi doldu!
+
+Yavaşlama fonksiyonunun en altındaki moveSpeed = normalSpeed; çalıştı ve hızın aniden 12'ye düştü!
+
+Sonuç: Sen 2. saniyede Booster almış olmana ve 7. saniyeye kadar hızlı gitmen gerekmesine rağmen, 5. saniyede süresi dolan eski yavaşlama Coroutine'i hızını elinden aldı!
+*/
+
 /* 
-mesela şöyle:
+mesela şöyle çözülür:
 1. Değişken Tanımlama Alanı (Sınıfın Üst Kısmı)
 TMP_Text slowText; değişkeninin hemen altına şu yeni değişkeni ekle:
 
 C#
-// EKLENEN KISIM: O an çalışan Coroutine'i hafızada tutan kumanda
+EKLENEN KISIM: O an çalışan Coroutine'i hafızada tutan kumanda
 private Coroutine activeSpeedCoroutine;
 2. Boost Fonksiyonları
 BoostCar() ve BoosterCoroutine() metodlarını şu şekilde güncelle:
@@ -53,13 +78,13 @@ BoostCar() ve BoosterCoroutine() metodlarını şu şekilde güncelle:
 C#
 public void BoostCar()
 {
-    // EKLENEN: Zaten çalışan bir Coroutine varsa önce onu durdur
+    EKLENEN: Zaten çalışan bir Coroutine varsa önce onu durdur
     if (activeSpeedCoroutine != null)
     {
         StopCoroutine(activeSpeedCoroutine);
     }
 
-    // DEĞİŞEN: Başlatılan Coroutine'i değişkene atıyoruz
+    DEĞİŞEN: Başlatılan Coroutine'i değişkene atıyoruz
     activeSpeedCoroutine = StartCoroutine(BoosterCoroutine());
 }
 
@@ -77,7 +102,7 @@ IEnumerator BoosterCoroutine()
     moveSpeed = normalSpeed;
     boostText.gameObject.SetActive(false);
 
-    // EKLENEN: Süre bittiğinde kumandayı boşaltıyoruz
+    EKLENEN: Süre bittiğinde kumandayı boşaltıyoruz
     activeSpeedCoroutine = null;
 }
 3. Slow Fonksiyonları
@@ -86,13 +111,13 @@ SlowCar() ve SlowerCoroutine() metodlarını da aynı mantıkla güncelle:
 C#
 public void SlowCar()
 {
-    // EKLENEN: Zaten çalışan bir Coroutine varsa önce onu durdur
+    EKLENEN: Zaten çalışan bir Coroutine varsa önce onu durdur
     if (activeSpeedCoroutine != null)
     {
         StopCoroutine(activeSpeedCoroutine);
     }
 
-    // DEĞİŞEN: Başlatılan Coroutine'i değişkene atıyoruz
+    DEĞİŞEN: Başlatılan Coroutine'i değişkene atıyoruz
     activeSpeedCoroutine = StartCoroutine(SlowerCoroutine());
 }
 
@@ -110,7 +135,7 @@ IEnumerator SlowerCoroutine()
     moveSpeed = normalSpeed;
     boostText.gameObject.SetActive(false);
 
-    // EKLENEN: Süre bittiğinde kumandayı boşaltıyoruz
+    EKLENEN: Süre bittiğinde kumandayı boşaltıyoruz
     activeSpeedCoroutine = null;
 }
 */
